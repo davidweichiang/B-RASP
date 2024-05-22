@@ -1,5 +1,12 @@
+body {
+    font-family: sans-serif;
+}
+
 #controls {
     min-width: 300px;
+}
+
+#grid {
 }
 
 .panel {
@@ -42,7 +49,7 @@
 }
 
 .remove-column {
-    width: 100px;
+    width: 80px;
 }
 
 .remove-header {
@@ -107,7 +114,6 @@
 }
 
 .vector-column {
-    width: 500px;
 }
 
 .vector-header {

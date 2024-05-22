@@ -18,89 +18,85 @@
     <script src="brasp.js" type="text/javascript"></script>
 
     <div style="display: flex; flex-direction: row;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <div style="display: flex; justify-content: center;">
-                <div id="controls">
-                    <div class="panel" id="input-panel">
-                        <div style="display:flex;">
-                            Input:&nbsp;
-                            <input type="text" id="inputBox" oninput="syncGrid(this)">
-                            <div style="color:red;" id="recognition">
-                                rejected
-                            </div>
-                        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center;" id="controls">
+            <div class="panel" id="input-panel">
+                <div style="display:flex;">
+                    Input:&nbsp;
+                    <input type="text" id="inputBox" oninput="syncGrid(this)">
+                    <div style="color:red;" id="recognition">
+                        rejected
                     </div>
-                    <div class="panel">
-                        <h2>Load preset</h2>
-                        <!-- Have a dropdown for presets including Dyck, and an "add" button to add -->
-                        <select id="presets">
-                            <option value="dyck">Dyck-1 of Depth 2</option>
-                            <option value="stair3">Stair_3</option>
-                            <option value="ab_plus">(ab)^+</option>
-                            <option value="BprecAnosuccC">{a,b,c}^*a{b,c}^*ba^*</option>
-                        </select>
-                        <button onclick="loadPreset()">Load</button>
-                    </div>
-                    <div class="panel">
-                        <h2>Write program</h2>
-                        <p class="instruction">Please write Boolean expressions using the operators <code>!</code> (not), <code>&</code> (and), <code>|</code> (or).</p>
-                        <textarea id="programInput" rows="15" style="width: 100%;"></textarea>
-                        <p>
-                            <button onclick="compileProgram()">Compile</button>
-                        </p>
-                    </div>
-                    <div class="panel">
-                        <h2>Add operation</h2>
-                        <div class="subpanel">
-                            <h3>Initial operation</h3>
-                            <!-- <label for=" initial-symbol">Symbol:</label> -->
-                            Q_<input type="text" id="initial-symbol" style="width: 20px;">(i)
-                            <p>
-                                <button onclick="addInitialOperation()">Add</button>
-                            </p>
-                        </div>
-                        <div class="subpanel">
-                            <h3>Boolean operation </h3>
-                            <!-- <label for="boolean-name">Name:</label> -->
-                            <input type="text" id="boolean-name" style="width: 20px;">(i) :=
-                            <!-- <label for="boolean-expression">Expression:</label> -->
-                            <input type="text" id="boolean-expression" style="width: 100px;">
-                            <p>
-                                <button onclick="addBooleanOperation()">Add</button>
-                            </p>
-                        </div>
-                        <div class="subpanel">
-                            <h3>Attention operation</h3>
-                            <!-- <label for="attention-name">Name:</label> -->
-                            <input type="text" id="attention-name" style="width: 20px;">(i) :=
-                            <!-- <label for="attention-tie">Tie:</label> -->
-                            <select id="attention-tie">
-                                <option value="rightmost">rightmost</option>
-                                <option value="leftmost">leftmost</option>
-                            </select>
-                            <!-- <label for="attention-mask">Mask:</label> -->
-                            [<select id="attention-mask">
-                                <option value="j<i">j &lt; i</option>
-                                <option value="i<j">i &lt; j</option>
-                                <option value="j<=i">j &lt;= i</option>
-                                <option value="i<=j">i &lt;= j</option>
-                                <option value="1">1</option>
-                            </select>,
-                            <!-- <label for="score-expression">Score:</label> -->
-                            <input type="text" id="score-expression" style="width: 100px;">]
-                            <!-- <label for="value-expression">Value:</label> -->
-                            <input type="text" id="value-expression" style="width: 100px;"> :
-                            <!-- <label for="default-expression">Default:</label> -->
-                            <input type="text" id="default-expression" style="width: 100px;">
-                            <p>
-                                <button onclick="addAttentionOperation()">Add</button>
-                            </p>
-                        </div>
-                    </div> <!-- operations panel -->
                 </div>
             </div>
+            <div class="panel">
+                <h2>Load preset</h2>
+                <!-- Have a dropdown for presets including Dyck, and an "add" button to add -->
+                <select id="presets">
+                    <option value="dyck">Dyck-1 of Depth 2</option>
+                    <option value="stair3">Stair_3</option>
+                    <option value="ab_plus">(ab)^+</option>
+                    <option value="BprecAnosuccC">{a,b,c}^*a{b,c}^*ba^*</option>
+                </select>
+                <button onclick="loadPreset()">Load</button>
+            </div>
+            <div class="panel">
+                <h2>Write program</h2>
+                <p class="instruction">Please write Boolean expressions using the operators <code>!</code> (not), <code>&</code> (and), <code>|</code> (or).</p>
+                <textarea id="programInput" rows="15" style="width: 100%; resize: vertical;"></textarea>
+                <p>
+                    <button onclick="compileProgram()">Compile</button>
+                </p>
+            </div>
+            <div class="panel">
+                <h2>Add operation</h2>
+                <div class="subpanel">
+                    <h3>Initial operation</h3>
+                    <!-- <label for=" initial-symbol">Symbol:</label> -->
+                    Q_<input type="text" id="initial-symbol" style="width: 20px;">(i)
+                    <p>
+                        <button onclick="addInitialOperation()">Add</button>
+                    </p>
+                </div>
+                <div class="subpanel">
+                    <h3>Boolean operation </h3>
+                    <!-- <label for="boolean-name">Name:</label> -->
+                    <input type="text" id="boolean-name" style="width: 20px;">(i) :=
+                    <!-- <label for="boolean-expression">Expression:</label> -->
+                    <input type="text" id="boolean-expression" style="width: 100px;">
+                    <p>
+                        <button onclick="addBooleanOperation()">Add</button>
+                    </p>
+                </div>
+                <div class="subpanel">
+                    <h3>Attention operation</h3>
+                    <!-- <label for="attention-name">Name:</label> -->
+                    <input type="text" id="attention-name" style="width: 20px;">(i) :=
+                    <!-- <label for="attention-tie">Tie:</label> -->
+                    <select id="attention-tie">
+                        <option value="rightmost">rightmost</option>
+                        <option value="leftmost">leftmost</option>
+                    </select>
+                    <!-- <label for="attention-mask">Mask:</label> -->
+                    [<select id="attention-mask">
+                        <option value="j<i">j &lt; i</option>
+                        <option value="i<j">i &lt; j</option>
+                        <option value="j<=i">j &lt;= i</option>
+                        <option value="i<=j">i &lt;= j</option>
+                        <option value="1">1</option>
+                    </select>,
+                    <!-- <label for="score-expression">Score:</label> -->
+                    <input type="text" id="score-expression" style="width: 100px;">]
+                    <!-- <label for="value-expression">Value:</label> -->
+                    <input type="text" id="value-expression" style="width: 100px;"> :
+                    <!-- <label for="default-expression">Default:</label> -->
+                    <input type="text" id="default-expression" style="width: 100px;">
+                    <p>
+                        <button onclick="addAttentionOperation()">Add</button>
+                    </p>
+                </div>
+            </div> <!-- operations panel -->
         </div>
-        <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; flex-direction: column; align-items: left;" id="grid">
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <div class="grid-container remove-column" id="editContainer"></div>
